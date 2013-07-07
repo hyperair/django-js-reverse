@@ -1,7 +1,4 @@
-var {{ js_var_name }}, exports;
-exports = this;
-
-exports.{{ js_var_name }} = (function () {
+this.{{ js_var_name }} = (function () {
 
     function Urls() {}
 
@@ -25,9 +22,9 @@ exports.{{ js_var_name }} = (function () {
     Urls.init = function () {
         var name, pattern, self, url_patterns, _i, _len, _ref;
         url_patterns = [
-            {% for name, pattern in urls %}
+            {% for name, namespace_path, pattern in urls %}
                 [
-                    '{{name|escapejs}}', ['{{pattern.0|escapejs}}', [{% for arg in pattern.1 %}'{{ arg|escapejs }}'{% if not forloop.last %},{% endif %}{% endfor %}]]
+                    '{{name|escapejs}}', ['{{namespace_path}}{{pattern.0|escapejs}}', [{% for arg in pattern.1 %}'{{ arg|escapejs }}'{% if not forloop.last %},{% endif %}{% endfor %}]]
                 ]{% if not forloop.last %},{% endif %}
             {% endfor %}
         ];
@@ -44,6 +41,6 @@ exports.{{ js_var_name }} = (function () {
     return Urls;
 })();
 
-exports.{{ js_var_name }}.init();
+this.{{ js_var_name }}.init();
 
 
