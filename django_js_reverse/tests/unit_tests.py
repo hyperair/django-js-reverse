@@ -35,7 +35,7 @@ class JSReverseViewTestCase(TestCase):
     @override_settings(JS_REVERSE_JS_VAR_NAME='Foo')
     def test_js_var_name_changed_valid(self):
         response = self.client.post('/jsreverse/')
-        self.assertContains(response, 'exports.Foo = (function () {')
+        self.assertContains(response, 'this.Foo = (function () {')
 
     @override_settings(JS_REVERSE_JS_VAR_NAME='1test')
     def test_js_var_name_changed_invalid(self):
