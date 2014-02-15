@@ -30,7 +30,15 @@ class JSReverseViewTestCase(TestCase):
     def test_view_two_url_args(self):
         response = self.client.post('/jsreverse/')
         self.assertContains(
-            response, "test_two_url_args', ['test_two_url_args/%(arg_one)s\\u002D%(arg_two)s/', ['arg_one','arg_two']]")
+            response, "'test_two_url_args', ['test_two_url_args/%(arg_one)s\\u002D%(arg_two)s/', ['arg_one','arg_two']]")
+
+    def test_level1_namespaced_url(self):
+        response = self.client.post('/jsreverse/')
+        self.assertContains(response, "'ns1:foo', ['ns1/foo/', []]")
+
+    def test_level2_namespaced_url(self):
+        response = self.client.post('/jsreverse/')
+        self.assertContains(response, "'ns1:ns2:bar', ['ns1/ns2/bar/', []]")
 
     @override_settings(JS_REVERSE_JS_VAR_NAME='Foo')
     def test_js_var_name_changed_valid(self):

@@ -11,3 +11,4 @@ INSTALLED_APPS = (
     'django_js_reverse',
 )
 ALLOWED_HOSTS = ['testserver']
+JS_REVERSE_AVAILABLE_NAMESPACES = ['ns1', 'ns1:ns2']
