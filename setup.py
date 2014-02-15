@@ -35,5 +35,6 @@ setup(
     },
     install_requires=[
         'Django >= 1.4',
+        'six',
     ]
 )
